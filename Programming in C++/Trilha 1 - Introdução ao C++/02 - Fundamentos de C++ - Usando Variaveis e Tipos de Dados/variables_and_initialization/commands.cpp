@@ -20,11 +20,11 @@ using std::endl;
 	 
 int main() 
 {
-    int balance; // Declaring a variable
+    int balance; // Variavel declarada 
 
     cout << "My account balance is: $" << balance << endl;
 
-    balance = 1000; // Initializing a variable
+    balance = 1000; // Variavel inicializada
     cout << "My account balance is: $" << balance << endl;
 
     return 0;
