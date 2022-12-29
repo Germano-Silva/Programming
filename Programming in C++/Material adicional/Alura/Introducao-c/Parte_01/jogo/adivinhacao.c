@@ -4,68 +4,102 @@
 
 int main(){
 
-    //imprime cabecalho do jogo
-    printf("\n******************************************");
-    printf("\n* Bem-vindo ao nosso jogo de adivinhacao *");
-    printf("\n******************************************\n");
+    //todo: Cabecalho do jogo
+    printf("\n******************************************************\n");
+    printf("          ____                                        \n");
+    printf("         /___/\\_                Bem vindo             \n");
+    printf("        _\\   \\/_/\\__               ao                 \n");
+    printf("      __\\       \\/_/\\       jogo da adivinhacao       \n");
+    printf("      \\   __    __ \\ \\                                \n");
+    printf("     __\\  \\_\\   \\_\\ \\ \\   __                          \n");
+    printf("    /_/\\   __   __  \\ \\_/_/\\                         \n");
+    printf("    \\_\\/_\\__\\/\\__\\/\\__\\/_\\_\\/                         \n");
+    printf("       \\_\\/_/\\       /_\\_\\/                           \n");
+    printf("          \\_\\/       \\_\\/                             \n");
+    printf("\n******************************************************\n");
 
+    //todo: Função para numeros aleatorios.
     int segundos = time(0);
     srand(segundos);
-
     int numerogrande = rand();
 
+    // todo: Variaveis.
     int numerosecreto = numerogrande % 100;
     int chute;
     int tentativas = 1;
     double pontos = 1000;
-
     int acertou = 0;
 
-    int numerodetentativas = 5;
+    //todo: verificação de nivel. 
+    int nivel;
+    int numerodetentativas;
+    printf("\n       Qual o nivel de dificuldade    \n");
+    printf("\n       (1) Facil (2) Medio (3) Dificil\n");
+    printf("\n       Escolha: ");
+    scanf("%d", &nivel);
+    printf("\n******************************************************\n");
 
-    for(int i = 1; i <= numerodetentativas; i++) {
+    switch (nivel) {
+        case 1:
+            numerodetentativas = 20;
+            break;
+        case 2:
+            numerodetentativas = 15;
+            break;
+        default: 
+            numerodetentativas = 6;
+            break;
+        }
 
-        printf("Tentativa %d\n", tentativas);
-        printf("Qual e o seu chute? ");
+    // todo: função responsavel pelas regras do jogo de acordo com o nivel.
+    // laço de repetição que verifica o nivel de dificuldade adicionando a quantidade de tentativas.
+    for (int i = 1; i <= numerodetentativas; i++){
+
+        printf("\n       Tentativa %d\n", tentativas);
+        printf("\n       Qual e o seu chute? ");
 
         scanf("%d", &chute);
-        printf("Seu chute foi %d\n", chute);
+        printf("\n       Seu chute foi %d\n", chute);
 
-        if(chute < 0) {
-            printf("Voce nao pode chutar numeros negativos!\n");
+        if (chute < 0){
+            printf("\n       Voce nao pode chutar numeros negativos!\n");
+            printf("\n******************************************************\n");
             continue;
         }
 
         acertou = (chute == numerosecreto);
         int maior = chute > numerosecreto;
 
-        if(acertou){
+        //Função de validação se o chute é igual ao numero aleatorio 
+        if (acertou){
             break;
-        }
-
-        else if(maior) {
-            printf("Seu chute foi maior que o numero secreto\n");
-        }
-
-        else {
-            printf("Seu chute foi menor que o numero secreto\n");
+        }else if (maior){
+            printf("\n       Seu chute foi maior que o numero secreto\n");
+            printf("\n******************************************************\n");
+        }else{
+            printf("\n       Seu chute foi menor que o numero secreto\n");
+            printf("\n******************************************************\n");
         }
 
         tentativas++;
 
+        //função para verificação dos pontos de acordo com a quantidades de tentativas.
         double pontosperdidos = abs(chute - numerosecreto) / (double)2;
         pontos = pontos - pontosperdidos;
 
     }
 
-    printf("Fim de jogo!\n");
+    
 
+    //Função de validação de a pessoa acertou ou ganhou para finalização do jogo
     if(acertou) {
-        printf("Voce ganhou!\n");
-        printf("Voce acertou em %d tentativas!\n", tentativas);
-        printf("Total de pontos: %.1f\n", pontos);
+        printf("\n       Voce acertou em %d tentativas!\n", tentativas);
+        printf("\n       Voce ganhou!\n");
+        printf("\n       Total de pontos: %.1f\n", pontos);
+        printf("\n       Fim de jogo!\n");
     } else {
-        printf("Voce perdeu! Tente de novo!\n");
+        printf("\n       Voce perdeu! Tente de novo!\n");
+        printf("\n       Fim de jogo!\n");
     }
 
 
