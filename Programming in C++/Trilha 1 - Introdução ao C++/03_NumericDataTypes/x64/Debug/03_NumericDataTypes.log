@@ -1,0 +1,6 @@
+﻿  Codigo_02.cpp
+C:\Users\a853841\OneDrive - UFN - Universidade Franciscana\Programming\Programming in C++\Trilha 1 - Introdução ao C++\03_NumericDataTypes\Codigo_02.cpp(16,25): warning C4309: '=': truncamento de valor constante
+C:\Users\a853841\OneDrive - UFN - Universidade Franciscana\Programming\Programming in C++\Trilha 1 - Introdução ao C++\03_NumericDataTypes\Codigo_02.cpp(17,36): warning C4305: '=': truncamento de '__int64' para 'int'
+C:\Users\a853841\OneDrive - UFN - Universidade Franciscana\Programming\Programming in C++\Trilha 1 - Introdução ao C++\03_NumericDataTypes\Codigo_02.cpp(17,26): warning C4309: '=': truncamento de valor constante
+Codigo_02.obj : error LNK2005: main já definida no Codigo_01.obj
+C:\Users\a853841\OneDrive - UFN - Universidade Franciscana\Programming\Programming in C++\Trilha 1 - Introduçao ao C++\03_NumericDataTypes\x64\Debug\03_NumericDataTypes.exe : fatal error LNK1169: encontrados um ou mais símbolos múltiplos definidos

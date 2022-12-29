@@ -1,0 +1,13 @@
+﻿  Codigo_01.cpp
+  Codigo_02.cpp
+  Codigo_03.cpp
+  Codigo_04.cpp
+  Codigo_05.cpp
+  Codigo_06.cpp
+  Gerando Código...
+Codigo_02.obj : error LNK2005: main já definida no Codigo_01.obj
+Codigo_03.obj : error LNK2005: main já definida no Codigo_01.obj
+Codigo_04.obj : error LNK2005: main já definida no Codigo_01.obj
+Codigo_05.obj : error LNK2005: main já definida no Codigo_01.obj
+Codigo_06.obj : error LNK2005: main já definida no Codigo_01.obj
+C:\Users\a853841\OneDrive - UFN - Universidade Franciscana\Programming\Programming in C++\Trilha 1 - Introdução ao C++\04_VariablesDatatypes\x64\Debug\04_VariablesDatatypes.exe : fatal error LNK1169: encontrados um ou mais símbolos múltiplos definidos
