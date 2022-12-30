@@ -111,3 +111,14 @@ int main() {
 
 
 }
+
+/*
+
+No link abaixo, você encontra o projeto até o momento atual do curso.
+https://github.com/alura-cursos/C-I-Introdu-o-Linguagem-das-Linguagens/archive/e0b31848ebff213d19d75f9153806f87849d7ee5.zip
+
+Arquivos do curso. No github do alura-cursos temos o projeto completo feito pelos moderadores do Alura. 
+https://github.com/alura-cursos/moderadores/archive/master.zip
+Observação: O Zip em cima baixa o repositório inteiro com vários projetos da Alura. Ou seja, dentro desse ZIP você encontrará outros projetos.
+
+*/
