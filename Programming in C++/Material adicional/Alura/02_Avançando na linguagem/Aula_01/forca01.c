@@ -10,11 +10,11 @@ int chutesdados = 0;
 
 
 /**
- * Retorna 1 se a letra existe na palavra secreta, caso contrário retorna 0
+ * Retorna 1 se a letra existe na palavra secreta, caso contrario retorna 0
  *
- * @param letra A letra que o usuário digitou.
+ * @param letra A letra que o usuario digitou.
  *
- * @return o valor da variável j.
+ * @return o valor da variavel j.
  */
 int letraexiste(char letra) {
 
@@ -28,9 +28,9 @@ int letraexiste(char letra) {
 }
 
 /**
- * Conta o número de palpites errados
+ * Conta o numero de palpites errados
  *
- * @return O número de palpites errados.
+ * @return O numero de palpites errados.
  */
 int chuteserrados() {
     int erros = 0;
@@ -46,18 +46,18 @@ int chuteserrados() {
 }
 
 /**
- * Se o número de palpites errados for maior ou igual a 5, o jogador perdeu o jogo.
+ * Se o numero de palpites errados for maior ou igual a 5, o jogador perdeu o jogo.
  *
- * @return o número de falhas.
+ * @return o nuamero de falhas.
  */
 int enforcou() {
     return chuteserrados() >= 5;
 }
 
 /**
- * Retorna 1 se o jogador adivinhou todas as letras da palavra secreta e 0 caso contrário
+ * Retorna 1 se o jogador adivinhou todas as letras da palavra secreta e 0 caso contrario
  *
- * @return o valor da variável "i"
+ * @return o valor da variavel "i"
  */
 int ganhou() {
     for(int i = 0; i < strlen(palavrasecreta); i++) {
@@ -71,17 +71,17 @@ int ganhou() {
 
 
 /**
- * Imprime o título do jogo
+ * Imprime o titulo do jogo
  */
 void abertura() {
-    printf("/****************/\n");
+    printf("\n\n\n/****************/\n");
     printf("/ Jogo de Forca */\n");
     printf("/****************/\n\n");
 }
 
 /**
- * Pede uma letra ao usuário, verifica se a letra existe na palavra e, caso exista, imprime uma
- * mensagem dizendo que o usuário acertou, e se não acertar, imprime uma mensagem dizendo que errou.
+ * Pede uma letra ao usuario, verifica se a letra existe na palavra e, caso exista, imprime uma
+ * mensagem dizendo que o usuario acertou, e se nao acertar, imprime uma mensagem dizendo que errou.
  */
 void chuta() {
     char chute;
@@ -89,9 +89,9 @@ void chuta() {
     scanf(" %c", &chute);
 
     if(letraexiste(chute)) {
-        printf("Você acertou: a palavra tem a letra %c\n\n", chute);
+        printf("Voce acertou: a palavra tem a letra %c\n\n", chute);
     } else {
-        printf("\nVocê errou: a palavra NÃO tem a letra %c\n\n", chute);
+        printf("\nVoce errou: a palavra NaO tem a letra %c\n\n", chute);
     }
 
     chutes[chutesdados] = chute;
@@ -99,11 +99,11 @@ void chuta() {
 }
 
 /**
- * Verifica se a letra já foi adivinhada
+ * Verifica se a letra ja foi adivinhada
  *
- * @param letra A letra que o usuário digitou
+ * @param letra A letra que o usuario digitou
  *
- * @return o valor da variável encontrado.
+ * @return o valor da variavel encontrado.
  */
 int jachutou(char letra) {
     int achou = 0;
@@ -118,7 +118,7 @@ int jachutou(char letra) {
 }
 
 /**
- * Função criada para validar erros
+ * Funçao criada para validar erros
  * de acordo com a quantidade de erros adiciona um caracter.
  */
 void desenhaforca() {
@@ -149,14 +149,14 @@ void desenhaforca() {
 }
 
 /**
- * Lê um arquivo com uma lista de palavras, escolhe uma aleatoriamente e a armazena em uma variável global
+ * Le um arquivo com uma lista de palavras, escolhe uma aleatoriamente e a armazena em uma variavel global
  */
 void escolhepalavra() {
     FILE* f;
 
     f = fopen("palavras.txt", "r");
     if(f == 0) {
-        printf("Banco de dados de palavras não disponível\n\n");
+        printf("Banco de dados de palavras nao disponivel\n\n");
         exit(1);
     }
 
@@ -175,27 +175,27 @@ void escolhepalavra() {
 
 
 /**
- * É uma função que adiciona uma nova palavra ao jogo.
+ * e uma funçao que adiciona uma nova palavra ao jogo.
  */
 void adicionapalavra() {
     char quer;
 
-    printf("Você deseja adicionar uma nova palavra no jogo (S/N)?");
+    printf("Voce deseja adicionar uma nova palavra no jogo (S/N)?");
     scanf(" %c", &quer);
 
-    /* É uma função que adiciona uma nova palavra ao jogo. */
+    /* e uma funçao que adiciona uma nova palavra ao jogo. */
     if(quer == 'S') {
         char novapalavra[TAMANHO_PALAVRA];
 
-        printf("Digite a nova palavra, em letras maiúsculas: ");
+        printf("Digite a nova palavra, em letras maiusculas: ");
         scanf("%s", novapalavra);
 
         FILE* f;
 
         f = fopen("palavras.txt", "r+");
-        /* Verifica se o arquivo está aberto. Se não estiver, imprime uma mensagem e sai do programa. */
+        /* Verifica se o arquivo esta aberto. Se nao estiver, imprime uma mensagem e sai do programa. */
         if(f == 0) {
-            printf("Banco de dados de palavras não disponível\n\n");
+            printf("Banco de dados de palavras nao disponivel\n\n");
             exit(1);
         }
 
@@ -215,7 +215,7 @@ void adicionapalavra() {
 }
 
 /**
- * É um jogo da forca
+ * e um jogo da forca
  */
 int main() {
 
