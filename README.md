@@ -20,7 +20,7 @@ Cada caminho de aprendizagem apresenta oportunidades adequadas para escrever pro
 <h2 align="center">1ª Trilha: Introdução ao C++</h2>
 <p>Nesta trilha Skillsoft Aspire da jornada de programação em C++, o foco estará nos recursos fundamentais da linguagem de programação C++ com 12 cursos em um total de 14:37:2 (14 horas 37 minutos e 2 segundos), 1 laboratório de 4 horas.</p>
 
-### Trilha 1: Introdução ao C++
+<h3 align="center"> Trilha 1: Introdução ao C++ </h3>
 
 - Fundamentos de C++: Introdução
 - Fundamentos de C++: Usando Variáveis e Tipos de Dados
@@ -37,12 +37,13 @@ Cada caminho de aprendizagem apresenta oportunidades adequadas para escrever pro
 - Iniciando com C++
 
 
-## 2ª Trilha: Conceitos orientados a objetos em C++
+<h2 align="center">2ª Trilha: Conceitos orientados a objetos em C++ </h2>
+
 Nesta trilha da Skillsoft Aspire da jornada Programming C++, o foco será na programação central em C++, onde os alunos reconhecerão a importância da programação orientada a objetos.
 
 18 cursos com um total de 23h 59m 7s (23 horas 59 minutos e 7 segundos), 1 laboratório com 4 horas.
 
-### Trilha 2: Conceitos orientados a objetos em C++
+<h3 align="center"> Trilha 2: Conceitos orientados a objetos em C++ </h3>
 
 - OOP em C++: Introdução à Programação Orientada a Objetos
 - OOP em C++: Instanciando Objetos Usando Construtores
@@ -63,12 +64,12 @@ Nesta trilha da Skillsoft Aspire da jornada Programming C++, o foco será na pro
 - C++: usando o Construtor de movimento e o Operador de atribuição de movimento
 - Conceitos de Orientação a Objetos em C++
 
-## 3ª Trilha: Conceitos avançados em C++
+<h2 align="center"> 3ª Trilha: Conceitos avançados em C++ </h2>
 Nesta trilha da Skillsoft Aspire da jornada de programação em C++, o foco será na exploração de tópicos avançados de C++, como manipulação de arquivos, estruturas de dados, funções de primeira classe, modelos, lambdas em C++, gráficos e o desenvolvimento de um aplicativo de jogos simples.
 
 10 cursos com um total de 12h 41m 9s ( 12 horas 41 minutos e 9 segundos), 1 laboratório com 4 horas.
 
-### Trilha 3: Conceitos avançados em C++
+<h3 align="center"> Trilha 3: Conceitos avançados em C++ </h3>
 
 - Manipulação de arquivos em C++: trabalhando com fluxos de arquivos
 - Manipulação de arquivos em C++: executando operações avançadas de fluxo de arquivos
