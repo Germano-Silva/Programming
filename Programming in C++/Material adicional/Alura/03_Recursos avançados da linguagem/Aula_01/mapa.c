@@ -68,16 +68,6 @@ void liberamapa(MAPA* m) {
 	free(m->matriz);
 }
 
-/**
- * Imprime o mapa
- *
- * @param m ponteiro para o mapa
- */
-void imprimemapa(MAPA* m) {
-	for(int i = 0; i < m->linhas; i++) {
-		printf("%s\n", m->matriz[i]);
-	}
-}
 
 /**
  * Busca um caractere em uma matriz e retorna a posição do caractere na matriz
@@ -99,6 +89,7 @@ int encontramapa(MAPA* m, POSICAO* p, char c) {
 			}
 		}
 	}
+
 	return 0;
 }
 

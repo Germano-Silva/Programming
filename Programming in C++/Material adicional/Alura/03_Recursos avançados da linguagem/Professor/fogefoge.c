@@ -9,11 +9,6 @@ MAPA m;
 POSICAO heroi;
 int tempilula = 0;
 
-/**
- * Retorna verdadeiro se o jogador ganhou ou perdeu
- *
- * @return o valor da variável "ganhou" ou "perdeu".
- */
 int acabou() {
 	POSICAO pos;
 
@@ -24,13 +19,6 @@ int acabou() {
 		
 }
 
-/**
- * Retorna verdadeiro se o caractere passado para ele for uma das quatro direções
- *
- * @param direcao A direção que a cobra está tomando.
- *
- * @return um valor booleano.
- */
 int ehdirecao(char direcao) {
 	return
 		direcao == ESQUERDA || 
@@ -39,13 +27,6 @@ int ehdirecao(char direcao) {
 		direcao == DIREITA;
 }
 
-/**
- * Move o herói na direção especificada pelo parâmetro
- *
- * @param direcao a direção que o jogador quer seguir
- *
- * @return o valor da variável "direcao"
- */
 void move(char direcao) {
 
 	int proximox = heroi.x;
@@ -78,16 +59,6 @@ void move(char direcao) {
 	heroi.y = proximoy;
 }
 
-/**
- * Ele tenta encontrar uma direção aleatória para a qual se mover e, se não encontrar, retorna 0
- *
- * @param xatual A posição x atual do fantasma
- * @param yatual a coordenada y do fantasma
- * @param xdestino x coordenada do destino
- * @param ydestino y destino
- *
- * @return um inteiro.
- */
 int praondefantasmavai(int xatual, int yatual, 
 	int* xdestino, int* ydestino) {
 
@@ -112,9 +83,6 @@ int praondefantasmavai(int xatual, int yatual,
 	return 0;
 }
 
-/**
- * Move os fantasmas pelo mapa
- */
 void fantasmas() {
 	MAPA copia;
 
@@ -139,32 +107,6 @@ void fantasmas() {
 	liberamapa(&copia);
 }
 
-/**
-  * Explode a pílula nas quatro direções
-  */
-void explodepilula() {
-	if(!tempilula) return;
-	
-	explodepilula2(heroi.x, heroi.y, 0, 1, 3);
-	explodepilula2(heroi.x, heroi.y, 0, -1, 3);
-	explodepilula2(heroi.x, heroi.y, 1, 0, 3);
-	explodepilula2(heroi.x, heroi.y, -1, 0, 3);
-	
-	tempilula = 0;
-}
-
-
-/**
-  * Explode uma pílula em uma determinada direção, e o faz recursivamente
-  *
-  * @param x x coordenada da pílula
-  * @param y a coordenada y da pílula
-  * @param somax a direção x da explosão
-  * @param somay -1, 0, 1
-  * @param qtd o número de espaços que a explosão irá
-  *
-  * @return o número de pílulas que foram destruídas.
-  */
 void explodepilula2(int x, int y, int somax, int somay, int qtd) {
 
 	if(qtd == 0) return;
@@ -179,9 +121,17 @@ void explodepilula2(int x, int y, int somax, int somay, int qtd) {
 	explodepilula2(novox, novoy, somax, somay, qtd-1);
 }
 
-/**
- * Ele lê um mapa de um arquivo, imprime e então move o herói pelo mapa
- */
+void explodepilula() {
+	if(!tempilula) return;
+	
+	explodepilula2(heroi.x, heroi.y, 0, 1, 3);
+	explodepilula2(heroi.x, heroi.y, 0, -1, 3);
+	explodepilula2(heroi.x, heroi.y, 1, 0, 3);
+	explodepilula2(heroi.x, heroi.y, -1, 0, 3);
+	
+	tempilula = 0;
+}
+
 int main() {
 	
 	lemapa(&m);
