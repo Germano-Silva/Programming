@@ -6,7 +6,7 @@
 
 MAPA m;
 POSICAO heroi;
-
+int tempilula = 0;
 
 /**
  * Retorna verdadeiro se o jogador ganhou ou perdeu
@@ -70,6 +70,9 @@ void move(char direcao) {
 
 	if(!podeandar(&m, HEROI, proximox, proximoy))
 		return;
+    if(ehpersonagem(&m, PILULA, proximox, proximoy)) {
+        tempilula = 1;
+    }
 
 	andanomapa(&m, heroi.x, heroi.y, proximox, proximoy);
 	heroi.x = proximox;
@@ -138,6 +141,24 @@ void fantasmas() {
 }
 
 /**
+ * É uma função recursiva que recebe uma posição (x,y) e uma quantidade (qtd) e irá limpar o
+ * posição (x,y+1) e chama-se com a mesma posição (x,y) e quantidade (qtd-1) até o
+ * quantidade é 0
+ *
+ * @param x x posição da pílula
+ * @param y a coordenada y da pílula
+ * @param qtd o número de espaços a serem limpos
+ *
+ * @return o valor da variável qtd.
+ */
+void explodepilula(int x, int y, int qtd) {
+    if(qtd == 0) return; 
+    m.matriz[x][y+1] = VAZIO;
+    explodepilula(x, y+1, qtd-1);
+
+}
+
+/**
  * Ele lê um mapa de um arquivo, imprime e então move o herói pelo mapa
  */
 int main() {
@@ -145,16 +166,21 @@ int main() {
 	lemapa(&m);
 	encontramapa(&m, &heroi, HEROI);
 
-	do {
-		imprimemapa(&m);
+    
+    do {
+        printf("Pílula: %s\n", (tempilula ? "SIM" : "NÃO"));
+        imprimemapa(&m);
 
-		char comando;
-		scanf(" %c", &comando);
+        char comando;
+        scanf(" %c", &comando);
 
-		move(comando);
-		fantasmas();
+        if(ehdirecao(comando)) move(comando);
+        if(comando == BOMBA) explodepilula(heroi.x, heroi.y, 3);
 
-	} while (!acabou());
+        fantasmas();
+
+    } while (!acabou());
+	
 
 	liberamapa(&m);
 }
