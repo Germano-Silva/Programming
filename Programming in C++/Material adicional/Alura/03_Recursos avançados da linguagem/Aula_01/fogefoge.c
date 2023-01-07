@@ -9,13 +9,13 @@ POSICAO heroi;
 
 
 int acabou() {
-    POSICAO pos;
+	POSICAO pos;
 
-    int perdeu = !encontramapa(&m, &pos, HEROI);
-    int ganhou = !encontramapa(&m, &pos, FANTASMA);
+	int perdeu = !encontramapa(&m, &pos, HEROI);
+	int ganhou = !encontramapa(&m, &pos, FANTASMA);
 
-    return ganhou || perdeu;
-
+	return ganhou || perdeu;
+		
 }
 
 int ehdirecao(char direcao) {
