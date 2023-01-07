@@ -140,22 +140,24 @@ void fantasmas() {
 	liberamapa(&copia);
 }
 
+
 /**
- * É uma função recursiva que recebe uma posição (x,y) e uma quantidade (qtd) e irá limpar o
- * posição (x,y+1) e chama-se com a mesma posição (x,y) e quantidade (qtd-1) até o
- * quantidade é 0
- *
- * @param x x posição da pílula
- * @param y a coordenada y da pílula
- * @param qtd o número de espaços a serem limpos
- *
- * @return o valor da variável qtd.
- */
+  * É uma função recursiva que explode uma pílula na direção do parâmetro "qtd" (quantidade)
+  *
+  * @param x x coordenada da pílula
+  * @param y a coordenada y da pílula
+  * @param qtd o número de espaços que a explosão cobrirá
+  *
+  * @return o número de pílulas que explodiram.
+  */
 void explodepilula(int x, int y, int qtd) {
-    if(qtd == 0) return; 
+
+    if(qtd == 0) return;
+    if(!ehvalida(&m, x, y+1)) return;
+    if(ehparede(&m, x, y+1)) return;
+
     m.matriz[x][y+1] = VAZIO;
     explodepilula(x, y+1, qtd-1);
-
 }
 
 /**
