@@ -39,8 +39,14 @@ void fantasmas() {
     for(int i = 0; i < copia.linhas; i++) {
         for(int j = 0; j < copia.colunas; j++) {
             if(copia.matriz[i][j] == FANTASMA) {
-                if(ehvalida(&m, i, j+1) && ehvazia(&m, i, j+1)) {
-                    andanomapa(&m, i, j, i, j+1);
+
+                int xdestino;
+                int ydestino;
+
+                int encontrou = praondefantasmavai(i, j, &xdestino, &ydestino);
+
+                if(encontrou) {
+                    andanomapa(&m, i, j, xdestino, ydestino);
                 }
             }
         }
