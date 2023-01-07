@@ -1,41 +1,117 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "fogefoge.h"
+#include "mapa.h"
+#include "mapa.c"
 
-char** mapa;
-int linhas;
-int colunas;
+MAPA m;
+POSICAO heroi;
+int praondefantasmavai(int xatual, int yatual, 
+    int* xdestino, int* ydestino) {
 
-int main () {
+    int opcoes[4][2] = { 
+        { xatual   , yatual+1 }, 
+        { xatual+1 , yatual   },  
+        { xatual   , yatual-1 }, 
+        { xatual-1 , yatual   }
+    };
 
-    FILE* f;
-    f = fopen("mapa.txt", "r");
-    if(f == 0){
-        printf("Erro na leitura do mapa\n");
-        exit(1);
+    srand(time(0));
+    for(int i = 0; i < 10; i++) {
+        int posicao = rand() % 4;
+
+        if(ehvalida(&m, opcoes[posicao][0], opcoes[posicao][1]) &&
+            ehvazia(&m, opcoes[posicao][0], opcoes[posicao][1])) {
+            *xdestino = opcoes[posicao][0];
+            *ydestino = opcoes[posicao][1];
+            return 1;
+        }
     }
 
-    fscanf(f,"%d %d", &linhas, &colunas);
-    printf("linhas %d colunas %d\n", linhas, colunas);
+    return 0;
+}
 
-    //alocação de memoria
-    mapa = malloc(sizeof(char*) * linhas);
-    for(int i = 0; i < linhas; i++){
-        mapa[i] = malloc(sizeof(char) * (colunas+1));
+void fantasmas() {
+    MAPA copia;
+
+    copiamapa(&copia, &m);
+
+    for(int i = 0; i < copia.linhas; i++) {
+        for(int j = 0; j < copia.colunas; j++) {
+            if(copia.matriz[i][j] == FANTASMA) {
+                if(ehvalida(&m, i, j+1) && ehvazia(&m, i, j+1)) {
+                    andanomapa(&m, i, j, i, j+1);
+                }
+            }
+        }
     }
 
+    liberamapa(&copia);
+}
 
-    for (int i = 0; i < 5; i++) {
-        fscanf(f, "%s", mapa[i]);
+int acabou()
+{
+    return 0;
+}
 
+int ehdirecao(char direcao) {
+    return
+        direcao == 'a' || 
+        direcao == 'w' ||
+        direcao == 's' ||
+        direcao == 'd';
+}
+
+void move(char direcao) {
+
+    if(!ehdirecao(direcao))
+        return;
+
+    int proximox = heroi.x;
+    int proximoy = heroi.y;
+
+    switch(direcao) {
+        case 'a':
+            proximoy--;
+            break;
+        case 'w':
+            proximox--;
+            break;
+        case 's':
+            proximox++;
+            break;
+        case 'd':
+            proximoy++;
+            break;
     }
 
-    for(int i = 0; i < 5; i++) {
-        printf("%s\n", mapa[i]);
-    }
+    if(!ehvalida(&m, proximox, proximoy))
+        return;
 
-    fclose(f);
-    for (int i = 0; i < linhas; i++){
-        free(mapa[1]);
-    }
-    free(mapa);
+    if(!ehvazia(&m, proximox, proximoy))
+        return;
+    
+    andanomapa(&m, heroi.x, heroi.y, proximox, proximoy);
+    heroi.x = proximox;
+    heroi.y = proximoy;
+
+}
+
+int main()
+{
+
+    lemapa(&m);
+    encontramapa(&m, &heroi, '@');
+
+    do
+    {
+        imprimemapa(&m);
+        char comando;
+        scanf("%c", &comando);
+        move(comando);
+        fantasmas();
+    } while (!acabou());
+    
+
+    liberamapa(&m);
 }
