@@ -8,6 +8,11 @@ MAPA m;
 POSICAO heroi;
 
 
+/**
+ * Retorna verdadeiro se o jogador ganhou ou perdeu
+ *
+ * @return o valor da variável "ganhou" ou "perdeu".
+ */
 int acabou() {
 	POSICAO pos;
 
@@ -18,6 +23,13 @@ int acabou() {
 		
 }
 
+/**
+ * Retorna verdadeiro se o caractere passado para ele for uma das quatro direções
+ *
+ * @param direcao A direção que a cobra está tomando.
+ *
+ * @return um valor booleano.
+ */
 int ehdirecao(char direcao) {
 	return
 		direcao == ESQUERDA || 
@@ -26,6 +38,13 @@ int ehdirecao(char direcao) {
 		direcao == DIREITA;
 }
 
+/**
+ * Move o herói na direção especificada pelo parâmetro
+ *
+ * @param direcao a direção que o jogador quer seguir
+ *
+ * @return o valor da variável "direcao"
+ */
 void move(char direcao) {
 
 	if(!ehdirecao(direcao))	
@@ -57,6 +76,16 @@ void move(char direcao) {
 	heroi.y = proximoy;
 }
 
+/**
+ * Ele tenta encontrar uma direção aleatória para a qual se mover e, se não encontrar, retorna 0
+ *
+ * @param xatual A posição x atual do fantasma
+ * @param yatual a coordenada y do fantasma
+ * @param xdestino x coordenada do destino
+ * @param ydestino y destino
+ *
+ * @return um inteiro.
+ */
 int praondefantasmavai(int xatual, int yatual, 
 	int* xdestino, int* ydestino) {
 
@@ -81,6 +110,9 @@ int praondefantasmavai(int xatual, int yatual,
 	return 0;
 }
 
+/**
+ * Move os fantasmas pelo mapa
+ */
 void fantasmas() {
 	MAPA copia;
 
@@ -105,6 +137,9 @@ void fantasmas() {
 	liberamapa(&copia);
 }
 
+/**
+ * Ele lê um mapa de um arquivo, imprime e então move o herói pelo mapa
+ */
 int main() {
 	
 	lemapa(&m);

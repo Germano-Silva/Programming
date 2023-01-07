@@ -3,6 +3,11 @@
 #include "mapa.h"
 #include <string.h>
 
+/**
+ * Lê um arquivo e o armazena em uma matriz
+ *
+ * @param m ponteiro para uma estrutura MAPA
+ */
 void lemapa(MAPA* m) {
 	FILE* f;
 	f = fopen("mapa.txt", "r");
@@ -21,6 +26,11 @@ void lemapa(MAPA* m) {
 	fclose(f);
 }
 
+/**
+ * Aloca memória para um array 2D de caracteres
+ *
+ * @param m ponteiro para uma estrutura MAPA
+ */
 void alocamapa(MAPA* m) {
 	m->matriz = malloc(sizeof(char*) * m->linhas);
 
@@ -29,6 +39,12 @@ void alocamapa(MAPA* m) {
 	}
 }
 
+/**
+ * Copia o conteúdo de um mapa para outro
+ *
+ * @param destino o mapa que será copiado para
+ * @param origem O mapa que será copiado.
+ */
 void copiamapa(MAPA* destino, MAPA* origem) {
 	destino->linhas = origem->linhas;
 	destino->colunas = origem->colunas;
@@ -39,6 +55,11 @@ void copiamapa(MAPA* destino, MAPA* origem) {
 }
 
 
+/**
+ * Libera a memória alocada para a matriz
+ *
+ * @param m ponteiro para o mapa
+ */
 void liberamapa(MAPA* m) {
 	for(int i = 0; i < m->linhas; i++) {
 		free(m->matriz[i]);
@@ -47,12 +68,26 @@ void liberamapa(MAPA* m) {
 	free(m->matriz);
 }
 
+/**
+ * Imprime o mapa
+ *
+ * @param m ponteiro para o mapa
+ */
 void imprimemapa(MAPA* m) {
 	for(int i = 0; i < m->linhas; i++) {
 		printf("%s\n", m->matriz[i]);
 	}
 }
 
+/**
+ * Busca um caractere em uma matriz e retorna a posição do caractere na matriz
+ *
+ * @param m o mapa
+ * @param p é um ponteiro para uma estrutura POSICAO
+ * @param c O caractere a ser encontrado
+ *
+ * @return a posição do caractere na matriz.
+ */
 int encontramapa(MAPA* m, POSICAO* p, char c) {
 
 	for(int i = 0; i < m->linhas; i++) {
@@ -64,11 +99,17 @@ int encontramapa(MAPA* m, POSICAO* p, char c) {
 			}
 		}
 	}
-
-	// não encontramos!
 	return 0;
 }
 
+/**
+ * Retorna verdadeiro se a posição dada for válida, não uma parede, e não ocupada pelo personagem dado
+ *
+ * @param m o mapa
+ * @param personagem O personagem que representa o jogador.
+ * @param x a coordenada x do personagem
+ * @param y a coordenada y do caractere
+ */
 int podeandar(MAPA* m, char personagem, int x, int y) {
 	return 
 		ehvalida(m, x, y) && 
@@ -76,6 +117,15 @@ int podeandar(MAPA* m, char personagem, int x, int y) {
 		!ehpersonagem(m, personagem, x, y);
 }
 
+/**
+ * Verifica se as coordenadas são válidas
+ *
+ * @param m o mapa
+ * @param x a coordenada x da posição
+ * @param y a coordenada y do ladrilho
+ *
+ * @return o valor da variável "m"
+ */
 int ehvalida(MAPA* m, int x, int y) {
 	if(x >= m->linhas) 
 		return 0;
@@ -85,11 +135,31 @@ int ehvalida(MAPA* m, int x, int y) {
 	return 1;	
 }
 
+/**
+ * Se o caractere nas coordenadas fornecidas for o caractere fornecido, retorne true, caso contrário, retorne
+ * falso.
+ *
+ * @param m O mapa
+ * @param personagem O caractere que será verificado.
+ * @param x a coordenada x do personagem
+ * @param y a coordenada y do caractere
+ *
+ * @return o valor da expressão.
+ */
 int ehpersonagem(MAPA* m, char personagem, int x, int y) {
 	return
 		m->matriz[x][y] == personagem;
 }
 
+/**
+ * Retorna verdadeiro se a posição dada for uma parede
+ *
+ * @param m O mapa
+ * @param x A coordenada x do bloco que você deseja verificar.
+ * @param y A coordenada y do ladrilho a ser verificada.
+ *
+ * @return um valor booleano.
+ */
 int ehparede(MAPA* m, int x, int y) {
 	return 
 		m->matriz[x][y] == PAREDE_VERTICAL ||
@@ -97,6 +167,15 @@ int ehparede(MAPA* m, int x, int y) {
 }
 
 
+/**
+ * Move um personagem de uma posição para outra
+ *
+ * @param m ponteiro para o mapa
+ * @param xorigem x coordenada do personagem
+ * @param yorigem a coordenada y do personagem
+ * @param xdestino x coordenada do destino
+ * @param ydestino y destino
+ */
 void andanomapa(MAPA* m, int xorigem, int yorigem, 
 	int xdestino, int ydestino) {
 
