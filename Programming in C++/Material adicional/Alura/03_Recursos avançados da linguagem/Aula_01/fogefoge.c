@@ -140,24 +140,40 @@ void fantasmas() {
 	liberamapa(&copia);
 }
 
+/**
+  * Explode a pílula nas quatro direções
+  */
+void explodepilula() {
+    explodepilula2(heroi.x, heroi.y, 0, 1, 3);
+    explodepilula2(heroi.x, heroi.y, 0, -1, 3);
+    explodepilula2(heroi.x, heroi.y, 1, 0, 3);
+    explodepilula2(heroi.x, heroi.y, -1, 0, 3);
+}
+
 
 /**
-  * É uma função recursiva que explode uma pílula na direção do parâmetro "qtd" (quantidade)
+  * Explode uma pílula em uma determinada direção, e o faz recursivamente
   *
   * @param x x coordenada da pílula
   * @param y a coordenada y da pílula
-  * @param qtd o número de espaços que a explosão cobrirá
+  * @param somax a direção x da explosão
+  * @param somay -1, 0, 1
+  * @param qtd o número de espaços que a explosão irá
   *
-  * @return o número de pílulas que explodiram.
+  * @return o número de pílulas que foram destruídas.
   */
-void explodepilula(int x, int y, int qtd) {
+void explodepilula2(int x, int y, int somax, int somay, int qtd) {
 
     if(qtd == 0) return;
-    if(!ehvalida(&m, x, y+1)) return;
-    if(ehparede(&m, x, y+1)) return;
 
-    m.matriz[x][y+1] = VAZIO;
-    explodepilula(x, y+1, qtd-1);
+    int novox = x+somax;
+    int novoy = y+somay;
+
+    if(!ehvalida(&m, novox, novoy)) return;
+    if(ehparede(&m, novox, novoy)) return;
+
+    m.matriz[novox][novoy] = VAZIO;
+    explodepilula2(novox, novoy, somax, somay, qtd-1);
 }
 
 /**
