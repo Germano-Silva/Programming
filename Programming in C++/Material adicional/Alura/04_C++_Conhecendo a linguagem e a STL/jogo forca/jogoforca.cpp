@@ -2,11 +2,13 @@
 #include <string>
 #include <map>
 #include <vector>
-
+#include <fstream>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 //const string PALAVRA_SECRETA
-string palavrasecreta = "MELANCIA";
+string palavrasecreta;
 //dicionario mapea chaves para valores 
 map <char, bool> chutou;
 //vetor parecido com um array mas sem precisar informar o tamanho do vetor
@@ -90,8 +92,39 @@ void chuta(){
         cout << endl;
 }
 
+vector<string> learquivo(){
+        ifstream arquivo;
+        arquivo.open("palavras.txt");
+
+        int quantidadepalavras;
+        arquivo >> quantidadepalavras;
+
+            cout<< "O arquivo possui "<< quantidadepalavras<<endl;
+            vector<string> palavrasdoarquivo;
+            for (int i = 0; i < quantidadepalavras; i++)
+            {
+                string palavraslida;
+                arquivo >> palavraslida;
+                cout << "na linha " << i << " : " << palavraslida << endl;
+                palavrasdoarquivo.push_back(palavraslida);
+            }
+            return palavrasdoarquivo;
+}
+
+void sorteiapalavra(){
+
+            vector<string> palavras = learquivo();
+
+            srand(time(NULL));
+            int indicesorteado = rand()%plavras.size();
+            palavrasecreta = palvras[indicesorteado];
+
+}
+
 int main(){
     imprime_cabecalho();
+    learquivo();
+    sorteiapalavra();
     while (naoacertou() && naoenforcou())
     {
         imprime_erros();
