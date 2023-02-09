@@ -1,9 +1,8 @@
-#include "Pessoa.hpp"
 #include <iostream>
+#include "Pessoa.hpp"
 
 Pessoa::Pessoa(Cpf cpf, std::string nome): cpf(cpf), nome(nome)
 {
-    std::cout << "Constutor de Pessoa" << std::endl;
     verificaTamanhoDoNome();
 }
 
@@ -14,11 +13,3 @@ void Pessoa::verificaTamanhoDoNome()
         exit(1);
     }
 }
-
-/** Sem destrutor
-    Pessoa::~Pessoa()
-    {
-
-    }
-*/
-

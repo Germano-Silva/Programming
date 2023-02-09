@@ -1,16 +1,17 @@
 #pragma once
-#include <string>
 #include "Cpf.hpp"
+#include <string>
 
-class Pessoa{
-    protected:
-        std::string nome;
-        Cpf cpf;
-        void verificaTamanhoDoNome();
-        
-    public:
-        Pessoa(Cpf cpf, std::string nome);
-        
+class Pessoa
+{
+protected:
+    Cpf cpf;
+    std::string nome;
 
-        //~Pessoa(); sem destrutor
+public:
+    Pessoa(Cpf cpf, std::string nome);
+    
+private:
+    void verificaTamanhoDoNome();
 };
+

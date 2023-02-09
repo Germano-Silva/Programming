@@ -1,13 +1,17 @@
 #include "Funcionario.hpp"
 #include <iostream>
 
-Funcionario::Funcionario(Cpf cpf, std::string nome, float salario):Pessoa(cpf, nome), salario(salario)
+Funcionario::Funcionario(Cpf cpf, std::string nome, float salario)
+    : Pessoa(cpf, nome), salario(salario)
 {
-    std::cout << "Constutor de funcionario" << std::endl;
 }
 
-std::string Funcionario::recuperaNome()
+std::string Funcionario::recuperaNome() const
 {
     return nome;
-    
+}
+
+float Funcionario::recuperaSalario() const
+{
+    return salario;
 }
